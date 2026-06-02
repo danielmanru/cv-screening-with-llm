@@ -3,6 +3,7 @@ import json
 from bson import ObjectId
 from fastapi import BackgroundTasks
 from langchain_openrouter import ChatOpenRouter
+from pydantic import EmailStr
 
 from app.core.config import get_settings
 from app.prompts.screening_prompt import cv_screening_prompt
@@ -54,6 +55,7 @@ class CVScreeningService:
         background_tasks: BackgroundTasks,
         cv_text: str,
         candidate_name: str,
+        candidate_email: EmailStr,
         job_title: str,
         employment_type: EmploymentType,
         work_arrangement: WorkArrangement,
@@ -61,6 +63,7 @@ class CVScreeningService:
     ) -> Screening:
         screening: Screening = Screening(
             candidate_name=candidate_name,
+            candidate_email=candidate_email,
             job=JobInfo(
                 title=job_title,
                 employment_type=employment_type,
@@ -93,6 +96,7 @@ class CVScreeningService:
             {},
             {
                 "candidate_name": 1,
+                "candidate_email": 1,
                 "job.title": 1,
                 "status": 1,
                 "result.match_score": 1,

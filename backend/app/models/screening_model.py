@@ -3,7 +3,7 @@ from enum import Enum
 from typing import List, Optional
 
 from bson import ObjectId
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from ..enums.screening_status import ScreeningStatus
 
@@ -33,9 +33,9 @@ class PyObjectId(ObjectId):
 
 
 class JobInfo(BaseModel):
-    title: str = Field(..., min_length=1, description="Nama pekerjaan")
-    employment_type: EmploymentType = Field(..., description="Jenis kontrak pekerjaan")
-    work_arrangement: WorkArrangement = Field(..., description="Sistem kerja")
+    title: str = Field(..., min_length=1)
+    employment_type: EmploymentType = Field(...)
+    work_arrangement: WorkArrangement = Field(...)
 
 
 class CVFileInfo(BaseModel):
@@ -64,7 +64,8 @@ class Screening(BaseModel):
         json_encoders={ObjectId: str},
     )
     id: Optional[PyObjectId] = Field(default=None, alias="_id")
-    candidate_name: str = Field(..., min_length=1, description="Nama kandidat")
+    candidate_name: str = Field(..., min_length=1)
+    candidate_email: EmailStr = Field(...)
     job: JobInfo
     cv_file: Optional[CVFileInfo] = None
 

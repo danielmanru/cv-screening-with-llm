@@ -3,6 +3,9 @@ import { ref, computed, onMounted } from "vue";
 import InputFile from "@/components/InputFile.vue";
 import { Button } from "@/components/ui/button";
 import { Astroid, CircleCheck, TriangleAlert } from "@lucide/vue";
+import { Label } from "reka-ui";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const cvFile = ref<File | null>(null);
 const jobRequirementFile = ref<File | null>(null);
@@ -36,12 +39,29 @@ onMounted(() => {
           title="Candidate CV"
           subtitle="Upload a CV file to analyze the candidate's qualifications and skills."
         />
-
-        <InputFile
-          v-model="jobRequirementFile"
-          title="Job Requirements"
-          subtitle="Upload the job requirements file."
-        />
+        <div class="flex flex-col gap-2">
+          <Label class="text-sm text-gray-600">Name</Label>
+          <Input
+            placeholder="Enter candidate's name"
+            class="w-full bg-white"
+            type="text"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <Label class="text-sm text-gray-600">Email</Label>
+          <Input
+            placeholder="Enter candidate's email"
+            class="w-full bg-white"
+            type="email"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <Label class="text-sm text-gray-600">Job Requirements</Label>
+          <Textarea
+            placeholder="Paste the job description here"
+            class="bg-white min-h-[150px]"
+          />
+        </div>
         <div class="flex w-full justify-center">
           <Button
             class="bg-[#5248E9] w-[50%] p-6 hover:cursor-pointer hover:bg-[#413bb8]"

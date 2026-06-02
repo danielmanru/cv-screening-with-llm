@@ -1,4 +1,5 @@
 from fastapi import APIRouter, BackgroundTasks, File, Form, HTTPException, UploadFile
+from pydantic import EmailStr
 
 
 from app.services.screening_service import CVScreeningService
@@ -18,6 +19,7 @@ async def screen_cv(
     background_tasks: BackgroundTasks,
     cv: UploadFile = File(...),
     candidate_name: str = Form(...),
+    candidate_email: EmailStr = Form(...),
     job_title: str = Form(...),
     employment_type: EmploymentType = Form(...),
     work_arrangement: WorkArrangement = Form(...),
@@ -31,6 +33,7 @@ async def screen_cv(
             cv_text=cv_text,
             job_requirement=job_requirement,
             candidate_name=candidate_name,
+            candidate_email=candidate_email,
             job_title=job_title,
             employment_type=employment_type,
             work_arrangement=work_arrangement,
