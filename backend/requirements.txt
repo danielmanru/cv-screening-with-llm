@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+langchain
+langchain-core
+langchain-openrouter
+python-multipart
+pypdf
+pymongo
