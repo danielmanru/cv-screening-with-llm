@@ -1,8 +1,9 @@
 from enum import Enum
+from subprocess import HIGH_PRIORITY_CLASS
 
 
 class Recommendation(str, Enum):
-    SANGAT_SESUAI = "Sangat Sesuai"
-    CUKUP_SESUAI = "Cukup Sesuai"
-    DIPERTIMBANGKAN = "Dipertimbangkan"
-    TIDAK_SESUAI = "Tidak Sesuai"
+    HIGHLY_SUITABLE = "Highly Suitable"
+    SUITABLE = "Suitable"
+    CONSIDER = "Consider"
+    NOT_SUITABLE = "Not Suitable"

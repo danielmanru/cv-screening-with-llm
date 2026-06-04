@@ -5,13 +5,13 @@ from typing import List, Optional
 from bson import ObjectId
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
-from ..enums.screening_status import ScreeningStatus
+from app.enums.screening_status_enum import ScreeningStatus
 
-from ..enums.recomendation_enum import Recommendation
+from app.enums.recomendation_enum import Recommendation
 
-from ..enums.work_arrangement import WorkArrangement
+from app.enums.work_arrangement_enum import WorkArrangement
 
-from ..enums.employment_type_enum import EmploymentType
+from app.enums.employment_type_enum import EmploymentType
 
 
 class PyObjectId(ObjectId):

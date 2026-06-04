@@ -8,3 +8,4 @@ langchain-openrouter
 python-multipart
 pypdf
 pymongo
+pydantic[email]

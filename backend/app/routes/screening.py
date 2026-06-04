@@ -4,11 +4,11 @@ from pydantic import EmailStr
 
 from app.services.screening_service import CVScreeningService
 from app.services.pdf_service import PDFService
-from ..schemas.screening_schema import ScreeningListResponse
-from ..models.screening_model import Screening
+from app.schemas.screening_schema import ScreeningListResponse
+from app.models.screening_model import Screening
 
-from ..enums.work_arrangement import WorkArrangement
-from ..enums.employment_type_enum import EmploymentType
+from app.enums.work_arrangement_enum import WorkArrangement
+from app.enums.employment_type_enum import EmploymentType
 
 router = APIRouter(prefix="/cv-screening", tags=["CV Screening"])
 

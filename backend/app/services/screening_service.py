@@ -7,12 +7,13 @@ from pydantic import EmailStr
 
 from app.core.config import get_settings
 from app.prompts.screening_prompt import cv_screening_prompt
-from ..schemas.screening_schema import ScreeningListResponse
+from app.schemas.screening_schema import ScreeningListResponse
 
-from ..enums.work_arrangement import WorkArrangement
-from ..enums.employment_type_enum import EmploymentType
-from ..models.screening_model import JobInfo, Screening, ScreeningResult 
-from ..db.database import db
+from app.enums.work_arrangement_enum import WorkArrangement
+from app.enums.employment_type_enum import EmploymentType
+from app.models.screening_model import JobInfo, Screening, ScreeningResult 
+from app.db.database import db
+from app.utils.websocket_manager import manager
 
 
 class CVScreeningService:
@@ -46,6 +47,7 @@ class CVScreeningService:
                 {"_id": ObjectId(screening_id)},
                 {"$set": {"result": screening.model_dump(), "status": "completed"}},
             )
+            await manager.broadcast("REFRESH_DATA")
             
         except json.JSONDecodeError as error:
             raise ValueError(f"Output LLM bukan JSON valid: {error}")

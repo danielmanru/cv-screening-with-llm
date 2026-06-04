@@ -1,7 +1,8 @@
 from enum import Enum
 
-class Status(str, Enum):
-    QUEUED = "queued"
+
+class ScreeningStatus(str, Enum):
+    PENDING = "pending"
     PROCESSING = "processing"
     COMPLETED = "completed"
     FAILED = "failed"

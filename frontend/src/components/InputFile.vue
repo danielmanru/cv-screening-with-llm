@@ -6,6 +6,7 @@ const file = defineModel<File | null>({ default: null });
 const props = defineProps<{
   title?: string;
   subtitle?: string;
+  required?: boolean;
 }>();
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -110,6 +111,7 @@ const formatSize = (size: number): string => {
         ref="fileInput"
         class="hidden"
         @change="onFileChange"
+        :required="props.required"
       />
 
       <div v-if="!file" class="space-y-2">
