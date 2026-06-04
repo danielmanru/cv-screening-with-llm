@@ -311,9 +311,18 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             Analysis Results
           </h1>
           <div
-            :class="`bg-[${screening?.result?.recommendation === 'Highly Suitable' ? '#81F8B9' : screening?.result?.recommendation === 'Consider' ? '#F8D775' : '#F88A75'}] rounded-[999px] h-fit px-2 py-1 justify-center items-center flex`"
+            :class="[
+              'rounded-[999px] h-fit px-2 py-1 justify-center items-center flex',
+              screening?.result?.recommendation === 'Highly Suitable'
+                ? 'bg-emerald-100 text-emerald-800'
+                : screening?.result?.recommendation === 'Suitable'
+                ? 'bg-amber-100 text-amber-800'
+                : screening?.result?.recommendation === 'Consider'
+                ? 'bg-orange-100 text-orange-800'
+                : 'bg-gray-100 text-gray-700',
+            ]"
           >
-            <p class="text-gray-700 font-bold">
+            <p class="font-bold">
               {{ screening?.result?.recommendation }}
             </p>
           </div>
