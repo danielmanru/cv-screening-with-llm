@@ -1,6 +1,7 @@
 import DefaultLayout from "./components/layouts/DefaultLayout.vue";
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "@/pages/Dashboard.vue";
+import Candidates from "./pages/Candidates.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
         path: "dashboard",
         name: "Dashboard",
         component: Dashboard,
+      },
+      {
+        path: "candidates",
+        name: "Candidates",
+        component: Candidates,
       },
     ],
   },

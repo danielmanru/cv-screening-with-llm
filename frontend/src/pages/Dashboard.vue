@@ -52,13 +52,13 @@ const form = ref({
 
 const loading = ref<Boolean>(false);
 
-interface jobInfo {
+export interface jobInfo {
   job_title: string;
   employment_type: string;
   work_arrangement: string;
 }
 
-interface ScreeningResult {
+export interface ScreeningResult {
   match_score: number;
   summary: string;
   matched_skills: string[];
@@ -68,7 +68,7 @@ interface ScreeningResult {
   recommendation: string;
 }
 
-interface Screening {
+export interface Screening {
   _id: string;
   candidate_name: string;
   candidate_email: string;
@@ -133,9 +133,9 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
 </script>
 
 <template>
-  <div class="w-full mx-auto">
-    <div class="grid grid-cols-10 gap-6">
-      <div class="col-span-4 flex flex-col gap-6">
+  <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-6 xl:grid-cols-10">
+      <div class="xl:col-span-4 flex flex-col gap-6">
         <div>
           <h1 class="text-2xl font-bold text-gray-800 mb-4">
             Candidate Analysis
@@ -210,7 +210,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
           <div class="flex w-full justify-center">
             <Button
               type="submit"
-              class="bg-[#5248E9] w-[50%] p-6 hover:cursor-pointer hover:bg-[#413bb8]"
+              class="bg-[#5248E9] w-full sm:w-[50%] p-6 hover:cursor-pointer hover:bg-[#413bb8]"
               :disabled="loading"
             >
               <RefreshCw
@@ -224,7 +224,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
           </div>
         </form>
       </div>
-      <div class="col-span-6 flex flex-col gap-6" v-if="loading">
+      <div class="xl:col-span-6 flex flex-col gap-6" v-if="loading">
         <div class="flex justify-between">
           <h1 class="text-2xl font-bold text-gray-800 mb-4">
             Analysis Results
@@ -247,15 +247,15 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
           <Skeleton class="h-4 w-[250px] bg-[#E4E8FF]" />
           <Skeleton class="h-4 w-[350px] bg-[#E4E8FF]" />
         </div>
-        <div class="grid grid-cols-10 gap-2">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-10">
           <div
-            class="col-span-4 flex flex-col gap-4 animate-pulse w-full items-center bg-white rounded-[8px] p-8 shadow-sm justify-center"
+            class="md:col-span-4 flex flex-col gap-4 animate-pulse w-full items-center bg-white rounded-[8px] p-8 shadow-sm justify-center"
           >
             <p class="text-sm text-gray-500">Match Score</p>
             <Skeleton class="h-4 w-[150px] h-[150px] bg-[#E4E8FF]" />
           </div>
           <div
-            class="col-span-6 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm animate-pulse"
+            class="md:col-span-6 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm animate-pulse"
           >
             <div class="flex justify-start items-center gap-4 w-full">
               <Astroid class="size-6 text-[#5446D7]" />
@@ -271,9 +271,9 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-10 gap-2">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-10">
           <div
-            class="col-span-5 border-l-4 border-[#1E6C48]/60 rounded-lg bg-white p-4 shadow-sm animate-pulse"
+            class="md:col-span-5 border-l-4 border-[#1E6C48]/60 rounded-lg bg-white p-4 shadow-sm animate-pulse"
           >
             <h3 class="font-bold text-gray-800 flex items-center gap-2">
               <span><CircleCheck class="size-6 text-[#1E6C48]" /></span>
@@ -287,7 +287,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             </ul>
           </div>
           <div
-            class="col-span-5 border-l-4 border-[#654000]/60 rounded-lg bg-white p-4 shadow-sm animate-pulse"
+            class="md:col-span-5 border-l-4 border-[#654000]/60 rounded-lg bg-white p-4 shadow-sm animate-pulse"
           >
             <h3 class="font-bold text-gray-800 flex items-center gap-2">
               <span><TriangleAlert class="size-6 text-[#654000]" /></span>
@@ -303,7 +303,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
         </div>
       </div>
       <div
-        class="col-span-6 flex flex-col gap-6"
+        class="xl:col-span-6 flex flex-col gap-6"
         v-if="screening?.status === 'completed'"
       >
         <div class="flex justify-between">
@@ -316,10 +316,10 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
               screening?.result?.recommendation === 'Highly Suitable'
                 ? 'bg-emerald-100 text-emerald-800'
                 : screening?.result?.recommendation === 'Suitable'
-                ? 'bg-amber-100 text-amber-800'
-                : screening?.result?.recommendation === 'Consider'
-                ? 'bg-orange-100 text-orange-800'
-                : 'bg-gray-100 text-gray-700',
+                  ? 'bg-amber-100 text-amber-800'
+                  : screening?.result?.recommendation === 'Consider'
+                    ? 'bg-orange-100 text-orange-800'
+                    : 'bg-gray-100 text-gray-700',
             ]"
           >
             <p class="font-bold">
@@ -335,9 +335,9 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             {{ screening?.candidate_email }}
           </p>
         </div>
-        <div class="grid grid-cols-10 gap-2">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-10">
           <div
-            class="col-span-4 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm justify-center"
+            class="md:col-span-4 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm justify-center"
           >
             <p class="text-sm text-gray-500">Match Score</p>
             <div class="relative flex items-center justify-center h-40 w-40">
@@ -375,7 +375,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             </div>
           </div>
           <div
-            class="col-span-6 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm"
+            class="md:col-span-6 flex flex-col gap-4 w-full items-center bg-white rounded-[8px] p-8 shadow-sm"
           >
             <div class="flex justify-start items-center gap-4 w-full">
               <Astroid class="size-6 text-[#5446D7]" />
@@ -386,9 +386,9 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             </p>
           </div>
         </div>
-        <div class="grid grid-cols-10 gap-2">
+        <div class="grid grid-cols-1 gap-2 md:grid-cols-10">
           <div
-            class="col-span-5 border-l-4 border-[#1E6C48] rounded-lg bg-white p-4 shadow-sm"
+            class="md:col-span-5 border-l-4 border-[#1E6C48] rounded-lg bg-white p-4 shadow-sm"
           >
             <h3 class="font-bold text-gray-800 flex items-center gap-2">
               <span
@@ -408,7 +408,7 @@ const { status } = useWebSocket(import.meta.env.VITE_WEBSOCKET_URL, {
             </ul>
           </div>
           <div
-            class="col-span-5 border-l-4 border-[#654000] rounded-lg bg-white p-4 shadow-sm"
+            class="md:col-span-5 border-l-4 border-[#654000] rounded-lg bg-white p-4 shadow-sm"
           >
             <h3 class="font-bold text-gray-800 flex items-center gap-2">
               <span

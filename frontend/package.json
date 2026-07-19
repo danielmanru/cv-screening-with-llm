@@ -9,13 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@lucide/vue": "^1.16.0",
+    "@lucide/vue": "^1.17.0",
     "@tailwindcss/vite": "^4.3.0",
     "@vueuse/core": "^14.3.0",
     "axios": "^1.16.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "reka-ui": "^2.9.8",
+    "datatables.net-dt": "^2.3.8",
+    "datatables.net-vue3": "^3.0.7",
+    "reka-ui": "^2.9.9",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",
     "vue": "^3.5.34",

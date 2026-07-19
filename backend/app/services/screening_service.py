@@ -100,9 +100,14 @@ class CVScreeningService:
                 "candidate_name": 1,
                 "candidate_email": 1,
                 "job.title": 1,
+                "job.employment_type": 1,
+                "job.work_arrangement": 1,
                 "status": 1,
                 "result.match_score": 1,
                 "result.recommendation": 1,
+                "result.summary": 1,
+                "result.strengths": 1,
+                "result.weaknesses": 1,
             }
         )
         screenings = await cursor.to_list(length=None)
